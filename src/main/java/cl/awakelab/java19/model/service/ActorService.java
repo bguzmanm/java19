@@ -1,6 +1,7 @@
 package cl.awakelab.java19.model.service;
 
-import cl.awakelab.java19.model.dto.ActorDTO;
+import cl.awakelab.java19.model.dao.ActorDAO;
+import cl.awakelab.java19.model.dto.Actor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,15 +10,29 @@ import java.util.List;
 @Service
 public class ActorService {
 
-  public List<ActorDTO> findAll(){
-    List<ActorDTO> actorDTOList = new ArrayList<ActorDTO>();
+  ActorDAO actorDAO;
 
-    actorDTOList.add(new ActorDTO(1, "Rocio", "Cortavista"));
-    actorDTOList.add(new ActorDTO(2, "Kevin", "Johansen"));
-    actorDTOList.add(new ActorDTO(3, "Gallardo", "Caballero"));
-    actorDTOList.add(new ActorDTO(4, "Boby", "Balboa"));
-    actorDTOList.add(new ActorDTO(5, "Betty", "Boob"));
+  public ActorService(ActorDAO actorDAO) {
+    this.actorDAO = actorDAO;
+  }
 
+  public List<Actor> findAll(){
+    List<Actor> actorDTOList = actorDAO.findAll();
     return actorDTOList;
+  }
+
+  public Actor findOne(int id){
+    return actorDAO.findById(id);
+  }
+
+  public boolean create(Actor a){
+    return actorDAO.create(a);
+  }
+
+  public boolean update(Actor a){
+    return actorDAO.update(a);
+  }
+  public boolean delete(int id){
+    return actorDAO.delete(id);
   }
 }

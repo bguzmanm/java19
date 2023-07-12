@@ -1,6 +1,6 @@
 package cl.awakelab.java19.controller;
 
-import cl.awakelab.java19.model.dto.ActorDTO;
+import cl.awakelab.java19.model.dto.Actor;
 import cl.awakelab.java19.model.service.ActorService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -34,7 +34,7 @@ public class ActorController {
 
     logger.info("el actor id es = " + actorId);
 
-    ActorDTO actor = new ActorDTO(1, "Rocio", "Cortavista");
+    Actor actor = service.findOne(actorId);
 
     model.addAttribute("actor", actor);
     return "actor";
@@ -46,12 +46,43 @@ public class ActorController {
   }
 
   @PostMapping("/new")
-  public String saveActor(@ModelAttribute ActorDTO actor){
+  public String saveActor(@ModelAttribute Actor actor){
 
     logger.info(actor.toString());
 
-    return "actorNew";
+    boolean ok = service.create(actor);
+    if (ok){
+      return "redirect:/actor";
+    } else {
+      return "error";
+    }
+  }
 
+  @GetMapping("/{actorId}/edit")
+  public String editActor(@PathVariable int actorId, Model model){
+    model.addAttribute("actor", service.findOne(actorId));
+    return "actorEdit";
+  }
+  @PostMapping("/edit")
+  public String saveEditActor(
+          @ModelAttribute Actor actor,
+          Model model){
+
+    boolean ok = service.update(actor);
+    if (ok){
+      return "redirect:/actor";
+    } else {
+      return "error";
+    }
+  }
+  @GetMapping("/{actorId}/delete")
+  public String delete(@PathVariable int actorId){
+    boolean ok = service.delete(actorId);
+    if (ok){
+      return "redirect:/actor";
+    } else {
+      return "error";
+    }
   }
 
 

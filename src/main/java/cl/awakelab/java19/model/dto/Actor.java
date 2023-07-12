@@ -1,14 +1,14 @@
 package cl.awakelab.java19.model.dto;
 
-public class ActorDTO {
+public class Actor {
   private int id;
   private String firstName;
   private String lastName;
 
-  public ActorDTO() {
+  public Actor() {
   }
 
-  public ActorDTO(int id, String firstName, String lastName) {
+  public Actor(int id, String firstName, String lastName) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -40,7 +40,7 @@ public class ActorDTO {
 
   @Override
   public String toString() {
-    return "ActorDTO{" +
+    return "Actor{" +
             "id=" + id +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
