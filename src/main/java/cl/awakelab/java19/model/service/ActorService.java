@@ -17,8 +17,7 @@ public class ActorService {
   }
 
   public List<Actor> findAll(){
-    List<Actor> actorDTOList = actorDAO.findAll();
-    return actorDTOList;
+    return actorDAO.findAll();
   }
 
   public Actor findOne(int id){
