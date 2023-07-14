@@ -23,4 +23,11 @@ public class FilmService {
   public boolean update(Film f) {
     return dao.update(f);
   }
+  public boolean create(Film f){
+    return dao.create(f);
+  }
+
+  public boolean delete(int id){
+    return dao.delete(id);
+  }
 }

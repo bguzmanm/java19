@@ -31,7 +31,10 @@ public class FilmDAOImpl implements FilmDAO {
 
   @Override
   public boolean create(Film f) {
-    return false;
+
+    return template.update("insert into film (title, description, release_year, language_id, length, rating," +
+            " special_features) values (?, ?, ?, ?, ?, ?, ?)", f.getTitle(), f.getDescription(), f.getReleaseYear(),
+            f.getLanguageId(), f.getLength(), f.getRating(), f.getSpecialFeatures()) > 0;
   }
 
   @Override
@@ -43,6 +46,6 @@ public class FilmDAOImpl implements FilmDAO {
 
   @Override
   public boolean delete(int id) {
-    return false;
+    return template.update("delete from film where film_id = ?", id) > 0;
   }
 }

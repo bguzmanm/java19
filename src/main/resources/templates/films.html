@@ -12,6 +12,11 @@
 <div class="container">
   <div th:replace="~{nav :: navegacion}"></div>
   <h1>Lista de Películas</h1>
+    <div class="row p-2 d-flex justify-content-end">
+        <div class="col-2">
+            <a class="btn btn-primary" th:href="@{/film/n}">Crear</a>
+        </div>
+    </div>
     <table class="table dataTable" id="films">
         <thead class="table-dark">
             <th>#</th>
@@ -33,7 +38,7 @@
                     <a th:href="@{/film/e/{filmId}(filmId=${film.getId()})}"><i
                             class="fa-solid fa-pen-to-square"></i></a>
                     &nbsp;&nbsp;
-                    <a th:href="@{/film/{filmId}/delete(filmId=${film.getId()})}">
+                    <a th:href="@{/film/d/{filmId}(filmId=${film.getId()})}">
                         <i class="fa-solid fa-trash"></i></a></td>
             </tr>
         </tbody>
